@@ -46,8 +46,15 @@
          font-size: 25px;
          color: #818181;
          display: block;
-         transition: 0.3s;
+         opacity: 0;
+         transform: translateY(-20px);
+         transition: opacity 0.5s ease, transform 0.5s ease;
       }
+      #mySidenav a.fadeIn {
+         opacity: 1;
+         transform: translateY(0);
+      }
+
       #mySidenav a:hover {
          color: #f1f1f1;
       }
@@ -147,17 +154,24 @@
 </div>
 
 <script>
- 
+ function openNav() {
+   document.getElementById("mySidenav").style.width = "100%";
+   let links = document.querySelectorAll('#mySidenav a');
+   links.forEach((link, index) => {
+      setTimeout(() => {
+         link.classList.add('fadeIn');
+      }, index * 100); // delay each link by 100ms
+   });
+}
 
-  
+function closeNav() {
+   document.getElementById("mySidenav").style.width = "0";
+   let links = document.querySelectorAll('#mySidenav a');
+   links.forEach((link) => {
+      link.classList.remove('fadeIn');
+   });
+}
 
-  function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-  }
-
-  function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-  }
 </script>
 </body>
 </html>
